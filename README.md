@@ -1,14 +1,15 @@
 Test task for Unity3D candidates
+
 Goal: implement core mechanics of hyper-casual games.
 ● Park Master
 ○ https://apps.apple.com/app/id1481293953
-● Jelly Shift
-○ https://apps.apple.com/app/id1467252438
-● Draw Climber
-○ https://apps.apple.com/app/id1495369374
+
+
 You should implement these mechanics with unity primitives or any assets from the Asset
 Store. Only core mechanics, nothing else.
 You SHOULD care about
+
+
 ● Game feel
 ○ Control
 ○ Camera
