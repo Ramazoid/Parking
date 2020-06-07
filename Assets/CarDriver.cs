@@ -47,4 +47,15 @@ public class CarDriver : MonoBehaviour
 
         drive = true;
     }
+    private void OnTriggerEnter(Collider col)
+    {
+        print("collided=" + col.gameObject.tag);
+        if (col.gameObject.tag == "Сoin")
+        {
+            SoundBank.Play("coin");
+            Destroy(col.gameObject);
+
+        }
+        
+    }
 }

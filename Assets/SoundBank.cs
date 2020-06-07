@@ -13,7 +13,7 @@ public class SoundBank : MonoBehaviour
     void Start()
     {
 
-        string[] soundfils = new string[] { "RSG" };
+        string[] soundfils = new string[] { "RSG","coin","win" };
         
         foreach (string sname in soundfils)
         {
@@ -26,35 +26,27 @@ public class SoundBank : MonoBehaviour
     }
     public static void Play(string sname)
     {
-        if (!sounds.ContainsKey(sname)) return;
+        if (!sounds.ContainsKey(sname)) throw new Exception("Sound[" + sname + "] not found!!!");
         AudioClip a = sounds[sname];
         //print("playing " + a);
         cliplist.Add(a);
-        /*player.clip = a;
-        player.Play();*/
+        player.clip = a;
+        player.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (player!=null && !player.isPlaying &&cliplist!=null && cliplist.Count > 0)
         {
             AudioClip a = cliplist[0];
             player.clip = a;
             player.Play();
             cliplist.RemoveAt(0);
-        }
+        }*/
         
     }
-
-    internal static void PlayRandom(string sname, int range)
-    {
-        if (player!=null && player.isPlaying) player.Stop();
-        string n = UnityEngine.Random.Range(1, range).ToString();
-        Play(sname + n);
-        //print("play random" + n);
-    }
-
     internal static void Stop()
     {
         player.Stop();

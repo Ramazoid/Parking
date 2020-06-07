@@ -41,10 +41,24 @@ public class Setup : MonoBehaviour
         pointer.car = car;
         pointer.court = courtOb.transform;
         pointer.texture = courtTex;
+
+        PutCoins();
         EventBus.Fire("CourtReady");
        
         
 
+    }
+
+    private void PutCoins()
+    {
+        GameObject coin = Resources.Load<GameObject>("Prefabs/Coin");
+        for(var i=0; i<20;i++)
+        {
+            Vector2 rpos = Random.insideUnitCircle*25;
+            Vector3 pos = new Vector3(rpos.x, 0, rpos.y);
+            GameObject.Instantiate(coin, pos, Quaternion.Euler(0, 90, 90));
+
+        }
     }
 
     private void PutCar(object ob = null)
