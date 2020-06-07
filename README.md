@@ -20,11 +20,12 @@ You SHOULD care about:
 ● Smoothness of game process
 ● Clean code
 
-You SHOULD NOT care about
+You SHOULD NOT care about:
 ● UI / UX
 ● Metagame
 ● Levels
 ● Architecture
-Deliverables
+
+Deliverables:
 ● Link to code repository (github, bitbucket, …)
 ● Video demonstrating gameplay
