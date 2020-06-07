@@ -56,6 +56,11 @@ public class CarDriver : MonoBehaviour
             Destroy(col.gameObject);
 
         }
+        else if(col.gameObject.tag=="Parking")
+        {
+            
+            EventBus.Fire("Win");
+        }
         
     }
 }

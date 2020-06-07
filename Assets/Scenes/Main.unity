@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 2534839}
   - component: {fileID: 2534843}
   m_Layer: 0
-  m_Name: Psrking
+  m_Name: Parking
   m_TagString: Parking
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 1149887614}
   - component: {fileID: 1149887613}
   m_Layer: 8
-  m_Name: Cube
+  m_Name: CarAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

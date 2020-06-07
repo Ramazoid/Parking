@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Setup : MonoBehaviour
@@ -13,7 +10,7 @@ public class Setup : MonoBehaviour
     public GameObject car;
     private CarDriver cardriver;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         EventBus.Subscribe("UIDone", PutCar);
@@ -22,7 +19,7 @@ public class Setup : MonoBehaviour
 
     private void Win(object obj)
     {
-        SoundBank.Play("win");
+       
         EventBus.Fire("ShowWin");
         EventBus.Fire("StopDrawing");
     }
@@ -41,12 +38,14 @@ public class Setup : MonoBehaviour
         courtOb.transform.position = Vector3.zero;
         courtRend = courtOb.GetComponent<Renderer>();
         courtRend.material.mainTexture = courtTex;
+
         pointer = GetComponent<Pointer>();
         pointer.car = car;
         pointer.court = courtOb.transform;
         pointer.texture = courtTex;
 
         PutCoins();
+
         EventBus.Fire("CourtReady");
     }
 
@@ -57,7 +56,7 @@ public class Setup : MonoBehaviour
         {
             Vector2 rpos = Random.insideUnitCircle*50;
             Vector3 pos = new Vector3(rpos.x, 0, rpos.y);
-            GameObject.Instantiate(coin, pos, Quaternion.Euler(0, 90, 90));
+            Instantiate(coin, pos, Quaternion.Euler(0, 90, 90));
 
         }
     }
@@ -68,15 +67,8 @@ public class Setup : MonoBehaviour
         car.transform.position = carPosition;
         car.transform.rotation = Quaternion.Euler(0, 0, 0);
         cardriver = car.AddComponent<CarDriver>();
+
         EventBus.Fire("StartDrawing",cardriver);
     }
-
-    void SartDrive()
-    {
-
-    }
-    void Update()
-    {
-        
-    }
+ 
 }

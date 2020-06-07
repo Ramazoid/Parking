@@ -25,8 +25,15 @@ public class Pointer : MonoBehaviour
     {
         ball = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         ball.transform.localScale = new Vector3(0.1f, 5, 0.1f);
+
         EventBus.Subscribe("StartDrawing", StartDrawing);
-        
+        EventBus.Subscribe("StopDrawing", StopDrawing);
+
+    }
+
+    private void StopDrawing(object obj)
+    {
+        drawAllowed = false;
     }
 
     private void StartDrawing(object ob )
@@ -42,8 +49,10 @@ public class Pointer : MonoBehaviour
     
     void Update()
     {
+        if (!drawAllowed)
+            return;
         
-        if (Input.GetMouseButton(0)&&drawAllowed)
+        if (Input.GetMouseButton(0))
         {
             
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -73,7 +82,7 @@ public class Pointer : MonoBehaviour
                 
 
         }
-        if(Input.GetMouseButtonUp(0) && drawAllowed)
+        if(Input.GetMouseButtonUp(0))
         {
             
             

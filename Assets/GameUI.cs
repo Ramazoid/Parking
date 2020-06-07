@@ -23,13 +23,15 @@ public class GameUI : MonoBehaviour
 
         EventBus.Subscribe("CourtReady", StartRSG);
         showNext = false;
-
+        EventBus.Subscribe("ShowWin", ShowWin);
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-        if (showNext&& pannelSequence.Count>0)
+        if (showNext && pannelSequence.Count > 0)
         {
 
 
@@ -42,10 +44,10 @@ public class GameUI : MonoBehaviour
 
 
         }
-        if(currentPanel!=null)
+        if (currentPanel != null)
         {
             float d = currentScaleTo - currentPanel.transform.localScale.x;
-            if(d>0.1f)
+            if (d > 0.1f)
             {
                 currentPanel.transform.localScale += Vector3.one / 10;
             }
@@ -57,8 +59,8 @@ public class GameUI : MonoBehaviour
     {
         yield return new WaitForSeconds(ps.panelTime);
         HidePanel(ps.panelName);
-        if(pannelSequence.Count>0)
-        showNext = true;
+        if (pannelSequence.Count > 0)
+            showNext = true;
         else
         {
             EventBus.Fire("UIDone");
@@ -79,11 +81,11 @@ public class GameUI : MonoBehaviour
         }
         else
             throw new Exception("Pannel[" + panName + "] not found!!!!");
-    } 
+    }
 
-        private GameObject ShowPanel(string panName)
+    private GameObject ShowPanel(string panName)
     {
-        
+
         GameObject pannel = Array.Find<GameObject>(pannels, (p) =>
         {
             return p.name == panName;
@@ -99,28 +101,34 @@ public class GameUI : MonoBehaviour
         return pannel;
     }
 
-    void StartRSG(object ob=null)
+    void StartRSG(object ob = null)
     {
         pannelSequence = new Queue<PanelShow>();
-        pannelSequence.Enqueue(new PanelShow("Ready", 1.3f,2));
-        pannelSequence.Enqueue(new PanelShow("Steady", 1,2));
-        pannelSequence.Enqueue(new PanelShow("Go", 1.2f,5));
-       
+        pannelSequence.Enqueue(new PanelShow("Ready", 1.3f, 2));
+        pannelSequence.Enqueue(new PanelShow("Steady", 1, 2));
+        pannelSequence.Enqueue(new PanelShow("Go", 1.2f, 5));
+
         showNext = true;
         SoundBank.Play("RSG");
     }
 
-}
-struct PanelShow
+    private void ShowWin(object obj)
     {
-    public string panelName;
-    public float panelTime;
-    public float ToScale;
-
-    public PanelShow(string panName, float panTime, float toScale) : this()
-    {
-        this.panelName = panName;
-        this.panelTime = panTime;
-        this.ToScale = toScale;
+        pannelSequence = new Queue<PanelShow>();
+        pannelSequence.Enqueue(new PanelShow("Win", 3f, 5));
+        showNext = true;
     }
 }
+    struct PanelShow
+    {
+        public string panelName;
+        public float panelTime;
+        public float ToScale;
+
+        public PanelShow(string panName, float panTime, float toScale) : this()
+        {
+            this.panelName = panName;
+            this.panelTime = panTime;
+            this.ToScale = toScale;
+        }
+    }

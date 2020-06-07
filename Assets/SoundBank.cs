@@ -17,36 +17,25 @@ public class SoundBank : MonoBehaviour
         
         foreach (string sname in soundfils)
         {
-            AudioClip a = Resources.Load<AudioClip>("Sounds/" + sname);
-            sounds.Add(sname, a);
+            AudioClip a = Resources.Load<AudioClip>( "Sounds/" + sname );
+            sounds.Add( sname, a);
         }
-        print("loaded sounds= " + sounds.Count);
+       
         player = GetComponent<AudioSource>();
         
     }
-    public static void Play(string sname)
+    public static void Play( string sname )
     {
-        if (!sounds.ContainsKey(sname)) throw new Exception("Sound[" + sname + "] not found!!!");
-        AudioClip a = sounds[sname];
-        //print("playing " + a);
-        cliplist.Add(a);
+        if ( !sounds.ContainsKey( sname ) ) throw new Exception( "Sound[" + sname + "] not found!!!" );
+        AudioClip a = sounds[ sname ];
+       
+        cliplist.Add( a );
         player.clip = a;
         player.Play();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (player!=null && !player.isPlaying &&cliplist!=null && cliplist.Count > 0)
-        {
-            AudioClip a = cliplist[0];
-            player.clip = a;
-            player.Play();
-            cliplist.RemoveAt(0);
-        }*/
+     
         
-    }
+    
     internal static void Stop()
     {
         player.Stop();
