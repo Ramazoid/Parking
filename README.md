@@ -1,4 +1,6 @@
-Test task for Unity3D candidates
+Test task for Unity3D candidates Hypercell Games
+
+It took me 2 days
 
 Goal: implement core mechanics of hyper-casual games.
 ● Park Master
